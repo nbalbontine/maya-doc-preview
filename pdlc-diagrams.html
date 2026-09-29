@@ -3,108 +3,451 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MAP PDLC — diagrams</title>
+  <title>Maya PDLC — how we define the product</title>
+  <meta name="description" content="A visual walkthrough of how the Maya Agentic Platform team keeps its product definition in one linked, reviewed set of documents." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" />
   <link rel="stylesheet" href="css/site.css" />
   <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: 'neutral',
-      flowchart: { curve: 'basis', padding: 12 },
-      securityLevel: 'loose',
-    });
+    const MERMAID_URL = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+    try {
+      const { default: mermaid } = await import(MERMAID_URL);
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        securityLevel: 'loose',
+        fontFamily: 'Geist, ui-sans-serif, system-ui, sans-serif',
+        flowchart: { curve: 'basis', padding: 16, nodeSpacing: 40, rankSpacing: 50, htmlLabels: true },
+        sequence: { actorMargin: 60, boxMargin: 12, messageFontSize: 14, noteFontSize: 13 },
+        themeVariables: {
+          fontFamily: 'Geist, ui-sans-serif, system-ui, sans-serif',
+          fontSize: '14px',
+          background: '#ffffff',
+          primaryColor: '#ffffff',
+          primaryTextColor: '#09090b',
+          primaryBorderColor: '#d4d4d8',
+          secondaryColor: '#f4f4f5',
+          tertiaryColor: '#fafafa',
+          lineColor: '#a1a1aa',
+          textColor: '#3f3f46',
+          clusterBkg: '#fafafa',
+          clusterBorder: '#e4e4e7',
+          edgeLabelBackground: '#ffffff',
+          actorBkg: '#ffffff',
+          actorBorder: '#d4d4d8',
+          actorTextColor: '#09090b',
+          actorLineColor: '#d4d4d8',
+          signalColor: '#52525b',
+          signalTextColor: '#09090b',
+          labelBoxBkgColor: '#f4f4f5',
+          labelBoxBorderColor: '#e4e4e7',
+          noteBkgColor: '#fafafa',
+          noteBorderColor: '#e4e4e7',
+          activationBkgColor: '#f4f4f5',
+          activationBorderColor: '#a1a1aa',
+        },
+      });
+      // Wait for web fonts so Mermaid measures label widths with the final font.
+      await document.fonts.ready;
+      await mermaid.run({ querySelector: 'pre.mermaid' });
+    } catch (error) {
+      console.error('Mermaid failed to load or render', error);
+      document.body.classList.add('mermaid-offline');
+    }
   </script>
 </head>
 <body>
-  <h1>Maya PDLC — visual overview</h1>
-  <p class="lead">
-    Companion visuals for the
-    <a href="https://github.com/nbalbontine/maya-doc/blob/main/docs/maya-pdlc-stakeholder-brief.md">Maya PDLC stakeholder brief</a>.
-    Diagrams render in the browser via Mermaid (requires internet once).
-  </p>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        Maya PDLC
+      </a>
+      <span class="badge badge-outline">Maya Agentic Platform</span>
+    </div>
+  </header>
 
-  <nav>
-    <a href="#scattered">Today — scattered</a>
-    <a href="#contrast">Old vs new</a>
-    <a href="#chain">Repo chain</a>
-    <a href="#artifacts">Artifacts</a>
-    <a href="#cascade">Update cascade</a>
-    <a href="#roles">Roles flow</a>
-  </nav>
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <span class="badge badge-outline">Visual overview · 6 diagrams</span>
+        <h1>How we define the product, from evidence to Jira</h1>
+        <p class="lead">
+          This page shows how the Maya Agentic Platform team keeps its product definition in one
+          place. The product definition is the briefs, market problems, personas, requirements and
+          stories that explain <em>why</em> we build something and <em>what</em> it must do.
+          Instead of scattered docs, boards and chat threads, it lives as one linked set of
+          documents where every change is reviewed and recorded.
+        </p>
+      </div>
+    </section>
 
-  <section id="scattered">
-    <h2>1. Today — knowledge is scattered</h2>
-    <p>Docs, Miro, and chat don’t stay in sync; new evidence is hard to route.</p>
-    <pre class="mermaid">
+    <div class="container">
+      <section id="overview" aria-labelledby="overview-title">
+        <h2 id="overview-title" class="sr-only">Overview</h2>
+
+        <div class="grid grid-3">
+          <article class="card">
+            <div class="card-header">
+              <div class="icon-tile" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+              </div>
+              <h3 class="card-title">The problem</h3>
+              <p class="card-description">
+                Product knowledge is spread across documents, Miro boards and chat. When a design
+                test or customer call changes what we believe, finding and updating everything that
+                depends on it takes longer than the fix itself.
+              </p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div class="icon-tile" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+              </div>
+              <h3 class="card-title">The approach</h3>
+              <p class="card-description">
+                A single <strong>dossier</strong>: a numbered chain of documents where each one is
+                built from the ones before it. Requirements point back to market problems, and
+                market problems point back to real evidence.
+              </p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div class="icon-tile" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+              </div>
+              <h3 class="card-title">The safeguard</h3>
+              <p class="card-description">
+                When something upstream changes, the documents downstream are <strong>flagged</strong>
+                for review, not silently rewritten. Automation drafts and routes the work; people
+                decide what changes, and every decision is logged.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <p class="section-label">How to read this page</p>
+
+        <div class="grid grid-2">
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">What the six diagrams cover</h3>
+              <p class="card-description">They tell one story, top to bottom. Read them in order the first time.</p>
+            </div>
+            <div class="card-content">
+              <ol class="steps">
+                <li><div><strong>Why change (diagrams 1–2)</strong><span>How knowledge is scattered today, and what we replace it with.</span></div></li>
+                <li><div><strong>How it is organised (diagrams 3–4)</strong><span>The chain of documents at a high level, then every document and what feeds it.</span></div></li>
+                <li><div><strong>How it works day to day (diagrams 5–6)</strong><span>A real example: one usability finding, which documents it touches, and who does what.</span></div></li>
+              </ol>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">Colours and arrows</h3>
+              <p class="card-description">Each box is a document or a person. Colours show which part of the process a box belongs to.</p>
+            </div>
+            <div class="card-content stack">
+              <ul class="legend" aria-label="Colour legend">
+                <li class="badge badge-outline"><span class="dot dot-evidence"></span>Evidence and inputs</li>
+                <li class="badge badge-outline"><span class="dot dot-definition"></span>Product definition</li>
+                <li class="badge badge-outline"><span class="dot dot-architecture"></span>Architecture</li>
+                <li class="badge badge-outline"><span class="dot dot-delivery"></span>Epics and delivery</li>
+                <li class="badge badge-outline"><span class="dot dot-problem"></span>Today's friction</li>
+              </ul>
+              <hr class="separator" />
+              <ul class="arrow-key" aria-label="Arrow legend">
+                <li><span class="line" aria-hidden="true"></span>Feeds into: the next document is built from this one</li>
+                <li><span class="line line-dashed" aria-hidden="true"></span>Weak, informal or not needed</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <p class="section-label">Key terms</p>
+
+        <article class="card">
+          <div class="card-content">
+            <dl class="term-list">
+              <div>
+                <dt>Artifact</dt>
+                <dd>One document in the chain, such as the brief, the personas or the PRD. Numbered 01–09 at initiative level and 01–04 per epic.</dd>
+              </div>
+              <div>
+                <dt>Dossier</dt>
+                <dd>The full set of artifacts for one initiative, kept together in one repository.</dd>
+              </div>
+              <div>
+                <dt>Evidence</dt>
+                <dd>Raw input: interview notes, usability findings, customer feedback. Filed once, never edited afterwards.</dd>
+              </div>
+              <div>
+                <dt>Review</dt>
+                <dd>The only way to change an artifact after it is first written. Each concern is accepted, rejected or deferred, and the decision is logged.</dd>
+              </div>
+              <div>
+                <dt>Flag (drift)</dt>
+                <dd>A marker placed on a document when something it was built from has changed, so its owner knows to check it.</dd>
+              </div>
+              <div>
+                <dt>Epic</dt>
+                <dd>A slice of the PRD that is planned and delivered on its own, broken down into use scenarios, stories and Jira tickets.</dd>
+              </div>
+            </dl>
+          </div>
+        </article>
+
+        <p class="section-label">The artifacts at a glance</p>
+
+        <div class="grid grid-2">
+          <article class="card">
+            <div class="card-header">
+              <div class="card-header-row">
+                <h3 class="card-title">Initiative level</h3>
+                <span class="badge badge-secondary">01–09</span>
+              </div>
+              <p class="card-description">Written once for the whole initiative, then kept current through review.</p>
+            </div>
+            <div class="card-content table-wrap">
+              <table class="table">
+                <thead><tr><th scope="col">#</th><th scope="col">Artifact</th><th scope="col">Answers</th></tr></thead>
+                <tbody>
+                  <tr><td>01</td><td>Brief</td><td>Why does this initiative exist? Intent, principles, non-goals.</td></tr>
+                  <tr><td>02</td><td>Market problems</td><td>Which pains do we solve, and how strong is the evidence?</td></tr>
+                  <tr><td>03</td><td>Competitive landscape</td><td>Who else solves this, and where are the gaps?</td></tr>
+                  <tr><td>04</td><td>Personas</td><td>Who are we building for?</td></tr>
+                  <tr><td>05</td><td>Workflow map</td><td>How does the work happen today, and with Maya?</td></tr>
+                  <tr><td>06</td><td>Touchpoint map</td><td>Where do people see and act in the product?</td></tr>
+                  <tr><td>07</td><td>PRD</td><td>What will we build? Scope, requirements, epics.</td></tr>
+                  <tr><td>08</td><td>Architecture recon</td><td>What are the technical options and risks?</td></tr>
+                  <tr><td>09</td><td>Architecture decisions</td><td>Which technical choices are binding?</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div class="card-header-row">
+                <h3 class="card-title">Per epic</h3>
+                <span class="badge badge-secondary">01–04</span>
+              </div>
+              <p class="card-description">Repeated for every epic the PRD defines.</p>
+            </div>
+            <div class="card-content table-wrap">
+              <table class="table">
+                <thead><tr><th scope="col">#</th><th scope="col">Artifact</th><th scope="col">Answers</th></tr></thead>
+                <tbody>
+                  <tr><td>01</td><td>Use scenarios</td><td>What does a persona try to do, and which market problem does it address?</td></tr>
+                  <tr><td>02</td><td>Epic PRD</td><td>What are the scope and requirements for this one epic?</td></tr>
+                  <tr><td>03</td><td>Stories</td><td>What are the buildable units, with acceptance criteria?</td></tr>
+                  <tr><td>04</td><td>Jira export</td><td>What goes into tickets, regenerated whenever stories change?</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="alert" role="note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              <div>
+                <p class="alert-title">Jira tracks delivery; the dossier explains it</p>
+                <p class="alert-description">Every story links back to a use scenario and a market problem, so the reason behind a ticket is always one click away.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <p class="section-label">The diagrams</p>
+
+      <nav class="nav-bar" aria-label="Diagrams">
+        <div class="tabs-list">
+          <a class="tabs-trigger" href="#scattered">1 · Today</a>
+          <a class="tabs-trigger" href="#contrast">2 · Old vs new</a>
+          <a class="tabs-trigger" href="#chain">3 · The chain</a>
+          <a class="tabs-trigger" href="#artifacts">4 · All artifacts</a>
+          <a class="tabs-trigger" href="#cascade">5 · Update cascade</a>
+          <a class="tabs-trigger" href="#roles">6 · Who does what</a>
+        </div>
+      </nav>
+
+      <div class="alert offline-note" role="status">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        <div>
+          <p class="alert-title">Diagrams could not be drawn</p>
+          <p class="alert-description">The diagram library loads from the internet. Check your connection and reload; the diagram source is shown below in the meantime.</p>
+        </div>
+      </div>
+
+      <div class="diagrams">
+        <section id="scattered" class="card" aria-labelledby="scattered-title">
+          <div class="card-header">
+            <div class="card-header-row">
+              <span class="badge badge-default">1</span>
+              <span class="badge badge-outline">Why change</span>
+            </div>
+            <h2 id="scattered-title" class="card-title card-title-lg">Today, knowledge is scattered</h2>
+            <p class="card-description">
+              The same facts live in several documents, a Miro board and chat threads, joined only
+              by loose links. New usability or customer input lands wherever someone happens to put
+              it, and nothing tells the other places that they are now out of date.
+            </p>
+          </div>
+          <div class="diagram">
+            <pre class="mermaid">
 flowchart TB
-    subgraph scattered["Today — scattered"]
+    classDef problem fill:#fff1f2,stroke:#f43f5e,color:#881337,stroke-width:1.5px
+    classDef evidence fill:#eff6ff,stroke:#3b82f6,color:#1e3a8a,stroke-width:1.5px
+
+    subgraph scattered["Where product knowledge lives today"]
         D1["Doc A"]
         D2["Doc B"]
-        M["Miro"]
-        C["Chat"]
-        U["Usability / customer input"]
+        M["Miro board"]
+        C["Chat thread"]
     end
-    U -.->|"copy-paste?"| D1
+    U["Usability / customer input"]
+    U -.->|"copy-pasted?"| D1
     U -.->|"mentioned once"| C
     D1 --- D2
     M --- D1
     C --- D2
-    </pre>
-  </section>
 
-  <section id="contrast">
-    <h2>2. Old way vs PDLC</h2>
-    <p>One linked chain plus a review log instead of many unlinked files.</p>
-    <pre class="mermaid">
+    class D1,D2,M,C problem
+    class U evidence
+    style scattered fill:#fafafa,stroke:#e4e4e7
+            </pre>
+          </div>
+          <div class="card-footer">
+            <strong>Takeaway</strong>
+            <span>Updating after new evidence becomes a scavenger hunt, and versions quietly disagree.</span>
+          </div>
+        </section>
+
+        <section id="contrast" class="card" aria-labelledby="contrast-title">
+          <div class="card-header">
+            <div class="card-header-row">
+              <span class="badge badge-default">2</span>
+              <span class="badge badge-outline">Why change</span>
+            </div>
+            <h2 id="contrast-title" class="card-title card-title-lg">The old way vs the PDLC dossier</h2>
+            <p class="card-description">
+              Same team, different working method. Many unlinked files become one numbered chain of
+              documents, each with its evidence and a review log that records every decision.
+            </p>
+          </div>
+          <div class="diagram">
+            <pre class="mermaid">
 flowchart LR
+    classDef problem fill:#fff1f2,stroke:#f43f5e,color:#881337,stroke-width:1.5px
+    classDef definition fill:#f5f3ff,stroke:#8b5cf6,color:#4c1d95,stroke-width:1.5px
+
     subgraph old["Old way"]
-        O1["Many files"]
-        O2["Weak links"]
-        O3["Silent edits"]
+        O1["Many separate files"]
+        O2["Weak links between them"]
+        O3["Silent edits, no history of why"]
     end
-    subgraph new["PDLC repo"]
+    subgraph new["PDLC dossier"]
         N1["Linked artifacts 01–09"]
         N2["Evidence + review log"]
-        N3["Flag downstream — human approves"]
+        N3["Downstream flagged, a person approves"]
     end
-    old -->|"same team"| new
-    </pre>
-  </section>
+    old ==>|"same team, new method"| new
 
-  <section id="chain">
-    <h2>3. Centralized dossier (high level)</h2>
-    <p>Evidence feeds the brief; PRD feeds epics and Jira.</p>
-    <pre class="mermaid">
+    class O1,O2,O3 problem
+    class N1,N2,N3 definition
+    style old fill:#fafafa,stroke:#e4e4e7
+    style new fill:#fafafa,stroke:#e4e4e7
+            </pre>
+          </div>
+          <div class="card-footer">
+            <strong>Takeaway</strong>
+            <span>Fewer contradictions and clear accountability: one home per fact, and a record of who decided what.</span>
+          </div>
+        </section>
+
+        <section id="chain" class="card" aria-labelledby="chain-title">
+          <div class="card-header">
+            <div class="card-header-row">
+              <span class="badge badge-default">3</span>
+              <span class="badge badge-outline">How it is organised</span>
+            </div>
+            <h2 id="chain-title" class="card-title card-title-lg">The chain, at a high level</h2>
+            <p class="card-description">
+              Read left to right. Evidence shapes the brief; the brief and the research documents
+              (02–06) shape the PRD. The PRD then splits two ways: architecture work, and epics that
+              become stories and Jira tickets.
+            </p>
+          </div>
+          <div class="diagram">
+            <pre class="mermaid">
 flowchart LR
-    E["sources/ evidence"]
+    classDef evidence fill:#eff6ff,stroke:#3b82f6,color:#1e3a8a,stroke-width:1.5px
+    classDef definition fill:#f5f3ff,stroke:#8b5cf6,color:#4c1d95,stroke-width:1.5px
+    classDef architecture fill:#fffbeb,stroke:#f59e0b,color:#78350f,stroke-width:1.5px
+    classDef delivery fill:#ecfdf5,stroke:#10b981,color:#064e3b,stroke-width:1.5px
+
+    E["Evidence<br/>notes, tests, feedback"]
     B["01 Brief"]
-    EV["02–06 Evidence"]
+    EV["02–06 Research<br/>problems, personas, workflows"]
     PRD["07 PRD"]
     ARCH["08–09 Architecture"]
     EP["Epics → Stories → Jira"]
     E --> B --> EV --> PRD --> ARCH
     PRD --> EP
-    </pre>
-  </section>
 
-  <section id="artifacts">
-    <h2>4. Artifact mind map (initiative + epics)</h2>
-    <p>Each box is one markdown artifact; arrows show declared inputs.</p>
-    <pre class="mermaid">
+    class E evidence
+    class B,EV,PRD definition
+    class ARCH architecture
+    class EP delivery
+            </pre>
+          </div>
+          <div class="card-footer">
+            <strong>Takeaway</strong>
+            <span>Everything the engineering team builds can be traced back, step by step, to evidence.</span>
+          </div>
+        </section>
+
+        <section id="artifacts" class="card" aria-labelledby="artifacts-title">
+          <div class="card-header">
+            <div class="card-header-row">
+              <span class="badge badge-default">4</span>
+              <span class="badge badge-outline">How it is organised</span>
+            </div>
+            <h2 id="artifacts-title" class="card-title card-title-lg">Every artifact and what feeds it</h2>
+            <p class="card-description">
+              Each box is one document. An arrow from A to B means B is written using A as an input,
+              so when A changes, B is flagged for review. The PRD (07) has the most inputs because
+              it pulls the research together.
+            </p>
+          </div>
+          <div class="diagram">
+            <pre class="mermaid">
 flowchart TD
+    classDef definition fill:#f5f3ff,stroke:#8b5cf6,color:#4c1d95,stroke-width:1.5px
+    classDef architecture fill:#fffbeb,stroke:#f59e0b,color:#78350f,stroke-width:1.5px
+    classDef delivery fill:#ecfdf5,stroke:#10b981,color:#064e3b,stroke-width:1.5px
+
     B["01 Brief"]
     MP["02 Market problems"]
-    CL["03 Competitive"]
+    CL["03 Competitive landscape"]
     P["04 Personas"]
-    WM["05 Workflows"]
-    TM["06 Touchpoints"]
+    WM["05 Workflow map"]
+    TM["06 Touchpoint map"]
     PRD["07 PRD"]
-    AR["08 Arch recon"]
-    AD["09 Arch decisions"]
-    US["Epic 01 Use scenarios"]
-    EPRD["Epic 02 Epic PRD"]
-    ST["Epic 03 Stories"]
-    J["Epic 04 Jira export"]
+    AR["08 Architecture recon"]
+    AD["09 Architecture decisions"]
+
+    subgraph epic["Per epic"]
+        US["01 Use scenarios"]
+        EPRD["02 Epic PRD"]
+        ST["03 Stories"]
+        J["04 Jira export"]
+    end
 
     B --> MP
     MP --> CL
@@ -123,44 +466,132 @@ flowchart TD
     TM --> AR
     AR --> AD
     PRD --> US --> EPRD --> ST --> J
-    </pre>
-  </section>
 
-  <section id="cascade">
-    <h2>5. Example — usability finding cascades</h2>
-    <p>Superintendent test: glanceable list before map (contradicts persona assumption).</p>
-    <pre class="mermaid">
+    class B,MP,CL,P,WM,TM,PRD definition
+    class AR,AD architecture
+    class US,EPRD,ST,J delivery
+    style epic fill:#fafafa,stroke:#e4e4e7
+            </pre>
+          </div>
+          <div class="card-footer">
+            <strong>Takeaway</strong>
+            <span>Because inputs are declared, a change anywhere shows exactly which documents need a second look.</span>
+          </div>
+        </section>
+
+        <section id="cascade" class="card" aria-labelledby="cascade-title">
+          <div class="card-header">
+            <div class="card-header-row">
+              <span class="badge badge-default">5</span>
+              <span class="badge badge-outline">Day to day</span>
+            </div>
+            <h2 id="cascade-title" class="card-title card-title-lg">Example: one usability finding ripples through</h2>
+            <p class="card-description">
+              A design test shows superintendents need a glanceable list of zones <em>before</em> the
+              map, which contradicts what the personas assumed. The finding is filed as evidence, and
+              only the documents that depend on it are flagged. Architecture is untouched because
+              nothing about integration changes.
+            </p>
+          </div>
+          <div class="diagram">
+            <pre class="mermaid">
 flowchart TD
-    U["Finding in sources/"]
+    classDef evidence fill:#eff6ff,stroke:#3b82f6,color:#1e3a8a,stroke-width:1.5px
+    classDef definition fill:#f5f3ff,stroke:#8b5cf6,color:#4c1d95,stroke-width:1.5px
+    classDef escalate fill:#f5f3ff,stroke:#8b5cf6,color:#4c1d95,stroke-width:1.5px,stroke-dasharray:5 4
+    classDef architecture fill:#fffbeb,stroke:#f59e0b,color:#78350f,stroke-width:1.5px
+    classDef delivery fill:#ecfdf5,stroke:#10b981,color:#064e3b,stroke-width:1.5px
+    classDef muted fill:#fafafa,stroke:#d4d4d8,color:#71717a
+
+    U["Usability finding filed as evidence"]
     U --> P4["04 Personas"]
-    U --> W5["05 Workflows"]
-    P4 --> T6["06 Touchpoints"]
+    U --> W5["05 Workflow map"]
+    P4 --> T6["06 Touchpoint map"]
     W5 --> T6
-    U --> B1["01 Brief principle — flagged for lead PM"]
+    U --> B1["01 Brief principle<br/>flagged for lead PM"]
     T6 --> R7["07 PRD acceptance criteria"]
     P4 --> R7
     W5 --> R7
     R7 --> ST["Epic stories"]
     ARCH["08–09 Architecture"] -.->|"not needed"| SKIP["No change"]
-    </pre>
-  </section>
 
-  <section id="roles">
-    <h2>6. Who does what (review, not free edit)</h2>
-    <pre class="mermaid">
+    class U evidence
+    class P4,W5,T6,R7 definition
+    class B1 escalate
+    class ST delivery
+    class ARCH architecture
+    class SKIP muted
+            </pre>
+          </div>
+          <div class="card-footer">
+            <strong>Takeaway</strong>
+            <span>One finding, updated everywhere it matters, and nowhere it doesn't. The dashed box needs a lead PM's decision.</span>
+          </div>
+        </section>
+
+        <section id="roles" class="card" aria-labelledby="roles-title">
+          <div class="card-header">
+            <div class="card-header-row">
+              <span class="badge badge-default">6</span>
+              <span class="badge badge-outline">Day to day</span>
+            </div>
+            <h2 id="roles-title" class="card-title card-title-lg">Who does what: review, not free editing</h2>
+            <p class="card-description">
+              The same example, seen as a conversation. Design brings the evidence, the PM who owns
+              the documents works through the review queue, the lead PM rules on anything that
+              touches principles, and engineering is consulted on feasibility. Read top to bottom.
+            </p>
+          </div>
+          <div class="diagram">
+            <pre class="mermaid">
 sequenceDiagram
-    participant Design as Nicolas — evidence
-    participant PM as Connall — doc owner
-    participant Lead as Nathan — brief / principles
-    participant Dev as Natalia — consulted
-    Design->>PM: Usability note ingested
-    PM->>PM: Review queue on 04–07
-    PM->>Lead: Escalate if principle affected
-    Lead->>PM: Accept / scope / defer — logged
+    box rgb(239, 246, 255) Evidence
+        participant Design as Nicolas (design)
+    end
+    box rgb(245, 243, 255) Product
+        participant PM as Connall (PM, doc owner)
+        participant Lead as Nathan (lead PM)
+    end
+    box rgb(236, 253, 245) Engineering
+        participant Dev as Natalia (dev)
+    end
+    Design->>PM: Usability note filed as evidence
+    PM->>PM: Work the review queue on 04–07
+    PM->>Lead: Escalate if a principle is affected
+    Lead->>PM: Accept, rescope or defer (logged)
     PM->>Dev: Feasibility question
-    Dev->>PM: Input only
-    PM->>PM: Version + review-log + optional PR merge
-    </pre>
-  </section>
+    Dev->>PM: Input only, no edits
+    PM->>PM: New version + review-log entry
+            </pre>
+          </div>
+          <div class="card-footer">
+            <strong>Takeaway</strong>
+            <span>Automation handles the busywork; people make the calls that matter, and every call is on record.</span>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">Maya Agentic Platform · Product development lifecycle (PDLC) overview</div>
+  </footer>
+
+  <script>
+    // Highlight the nav tab for the diagram currently in view.
+    const triggers = [...document.querySelectorAll('.tabs-trigger')];
+    const byId = new Map(triggers.map((a) => [a.hash.slice(1), a]));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          triggers.forEach((a) => a.removeAttribute('aria-current'));
+          byId.get(entry.target.id)?.setAttribute('aria-current', 'true');
+        }
+      },
+      { rootMargin: '-40% 0px -55% 0px' }
+    );
+    byId.forEach((_, id) => observer.observe(document.getElementById(id)));
+  </script>
 </body>
 </html>
