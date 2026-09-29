@@ -72,7 +72,7 @@
   <main id="top">
     <section class="hero">
       <div class="container">
-        <span class="badge badge-outline">Visual overview · 6 diagrams</span>
+        <span class="badge badge-outline">Visual overview · 7 diagrams</span>
         <h1>How we define the product, from evidence to Jira</h1>
         <p class="lead">
           This page shows how the Maya Agentic Platform team keeps its product definition in one
@@ -137,14 +137,14 @@
         <div class="grid grid-2">
           <article class="card">
             <div class="card-header">
-              <h3 class="card-title">What the six diagrams cover</h3>
+              <h3 class="card-title">What the diagrams cover</h3>
               <p class="card-description">They tell one story, top to bottom. Read them in order the first time.</p>
             </div>
             <div class="card-content">
               <ol class="steps">
                 <li><div><strong>Why change (diagrams 1–2)</strong><span>How knowledge is scattered today, and what we replace it with.</span></div></li>
                 <li><div><strong>How it is organised (diagrams 3–4)</strong><span>The chain of documents at a high level, then every document and what feeds it.</span></div></li>
-                <li><div><strong>How it works day to day (diagrams 5–6)</strong><span>A real example: one usability finding, which documents it touches, and who does what.</span></div></li>
+                <li><div><strong>How it works day to day (diagrams 5–7)</strong><span>A real example: one usability finding, which documents it touches, who does what, and how that same change looks as a GitHub pull request.</span></div></li>
               </ol>
             </div>
           </article>
@@ -273,6 +273,7 @@
           <a class="tabs-trigger" href="#artifacts">4 · All artifacts</a>
           <a class="tabs-trigger" href="#cascade">5 · Update cascade</a>
           <a class="tabs-trigger" href="#roles">6 · Who does what</a>
+          <a class="tabs-trigger" href="#github">7 · On GitHub</a>
         </div>
       </nav>
 
@@ -567,6 +568,75 @@ sequenceDiagram
           <div class="card-footer">
             <strong>Takeaway</strong>
             <span>Automation handles the busywork; people make the calls that matter, and every call is on record.</span>
+          </div>
+        </section>
+
+        <section id="github" class="card" aria-labelledby="github-title">
+          <div class="card-header">
+            <div class="card-header-row">
+              <span class="badge badge-default">7</span>
+              <span class="badge badge-outline">Day to day</span>
+            </div>
+            <h2 id="github-title" class="card-title card-title-lg">The same change, as a GitHub pull request</h2>
+            <p class="card-description">
+              Diagram 6 showed the decision in plain language. This is the identical change — the
+              usability finding updating personas, workflow map, touchpoint map and PRD — as it runs
+              through GitHub: which branch it lands on, who GitHub asks to review because of which
+              files were touched, and what has to be true before the merge button unlocks.
+            </p>
+          </div>
+          <div class="diagram">
+            <pre class="mermaid">
+sequenceDiagram
+    box rgb(245, 243, 255) Product
+        participant PM as Connall (PM, PR author)
+        participant Lead as Nathan (lead PM)
+    end
+    box rgb(236, 253, 245) Engineering
+        participant Dev as Natalia (dev, optional reviewer)
+    end
+    box rgb(255, 251, 235) GitHub
+        participant Branch as pdlc/maya-agentic-platform
+        participant PR as Pull request → main
+        participant Prot as Branch protection on main
+    end
+    PM->>Branch: Commit edited 04-07 artifacts + review-log entry
+    PM->>PR: Open PR "Update personas/PRD after usability finding"
+    PR->>PR: CODEOWNERS matches the changed file paths
+    PR->>Lead: Auto-request review (owns 01-brief.md, 07-prd.md)
+    PR->>Dev: Auto-request review (optional, feasibility)
+    Dev->>PR: Comment only - feasible, no objection
+    Lead->>PR: Approve - principle change accepted
+    PR->>Prot: Check required approval from code owner
+    PR->>Prot: Check drift-check status is green
+    Prot->>PM: Merge button unlocks
+    PM->>PR: Merge (squash) into main
+    PR->>Branch: main is current, next drift-check clears downstream flags
+            </pre>
+          </div>
+          <div class="card-content table-wrap">
+            <p class="card-title">Who GitHub asks, by file path (CODEOWNERS)</p>
+            <table class="table table--wide">
+              <thead><tr><th scope="col">Path pattern</th><th scope="col">Required reviewer</th><th scope="col">Why that owner</th></tr></thead>
+              <tbody>
+                <tr><td><code>initiatives/*/artifacts/01-brief.md</code></td><td>Lead PM</td><td>Blast radius is the whole initiative</td></tr>
+                <tr><td><code>initiatives/*/artifacts/07-prd.md</code></td><td>Lead PM</td><td>Scope and customer-facing commitments</td></tr>
+                <tr><td><code>initiatives/*/artifacts/08-*.md</code>, <code>09-*.md</code></td><td>Architect</td><td>Binding technical decisions</td></tr>
+                <tr><td><code>initiatives/*/artifacts/**</code> (default)</td><td>Product definer (doc owner)</td><td>Day-to-day artifact ownership</td></tr>
+                <tr><td><code>agents/**</code>, <code>templates/**</code>, <code>tools/**</code></td><td>Pipeline owner</td><td>Changes the generators — lands via its own <code>pdlc/agent-feedback</code> PR, never mixed into an initiative PR</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="alert" role="note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            <div>
+              <p class="alert-title">This is the target configuration, not a claim it's on everywhere today</p>
+              <p class="alert-description">CODEOWNERS and required-reviewer branch protection are what we recommend turning on per repo. Until they are, the <code>review-log.md</code> entry is the actual contract — GitHub then hardens it so a merge can't skip that step by accident.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <strong>Takeaway</strong>
+            <span>The file you touch decides who GitHub makes you convince — not everyone can approve every merge.</span>
           </div>
         </section>
       </div>

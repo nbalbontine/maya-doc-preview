@@ -410,6 +410,19 @@ code {
   white-space: nowrap;
 }
 
+/* Tables whose first column isn't a short "#" id (e.g. a file path) opt out
+   of the numeric-column treatment above. */
+.table--wide td:first-child {
+  width: auto;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--foreground);
+}
+
+.table--wide td:nth-child(2) {
+  white-space: normal;
+}
+
 /* ---------- Alert ---------- */
 
 .alert {
