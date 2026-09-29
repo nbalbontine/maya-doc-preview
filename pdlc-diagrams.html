@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MAP PDLC — diagrams</title>
+  <link rel="stylesheet" href="css/site.css" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'neutral',
+      flowchart: { curve: 'basis', padding: 12 },
+      securityLevel: 'loose',
+    });
+  </script>
+</head>
+<body>
+  <h1>Maya PDLC — visual overview</h1>
+  <p class="lead">
+    Companion visuals for the
+    <a href="https://github.com/nbalbontine/maya-doc/blob/main/docs/maya-pdlc-stakeholder-brief.md">Maya PDLC stakeholder brief</a>.
+    Diagrams render in the browser via Mermaid (requires internet once).
+  </p>
+
+  <nav>
+    <a href="#scattered">Today — scattered</a>
+    <a href="#contrast">Old vs new</a>
+    <a href="#chain">Repo chain</a>
+    <a href="#artifacts">Artifacts</a>
+    <a href="#cascade">Update cascade</a>
+    <a href="#roles">Roles flow</a>
+  </nav>
+
+  <section id="scattered">
+    <h2>1. Today — knowledge is scattered</h2>
+    <p>Docs, Miro, and chat don’t stay in sync; new evidence is hard to route.</p>
+    <pre class="mermaid">
+flowchart TB
+    subgraph scattered["Today — scattered"]
+        D1["Doc A"]
+        D2["Doc B"]
+        M["Miro"]
+        C["Chat"]
+        U["Usability / customer input"]
+    end
+    U -.->|"copy-paste?"| D1
+    U -.->|"mentioned once"| C
+    D1 --- D2
+    M --- D1
+    C --- D2
+    </pre>
+  </section>
+
+  <section id="contrast">
+    <h2>2. Old way vs PDLC</h2>
+    <p>One linked chain plus a review log instead of many unlinked files.</p>
+    <pre class="mermaid">
+flowchart LR
+    subgraph old["Old way"]
+        O1["Many files"]
+        O2["Weak links"]
+        O3["Silent edits"]
+    end
+    subgraph new["PDLC repo"]
+        N1["Linked artifacts 01–09"]
+        N2["Evidence + review log"]
+        N3["Flag downstream — human approves"]
+    end
+    old -->|"same team"| new
+    </pre>
+  </section>
+
+  <section id="chain">
+    <h2>3. Centralized dossier (high level)</h2>
+    <p>Evidence feeds the brief; PRD feeds epics and Jira.</p>
+    <pre class="mermaid">
+flowchart LR
+    E["sources/ evidence"]
+    B["01 Brief"]
+    EV["02–06 Evidence"]
+    PRD["07 PRD"]
+    ARCH["08–09 Architecture"]
+    EP["Epics → Stories → Jira"]
+    E --> B --> EV --> PRD --> ARCH
+    PRD --> EP
+    </pre>
+  </section>
+
+  <section id="artifacts">
+    <h2>4. Artifact mind map (initiative + epics)</h2>
+    <p>Each box is one markdown artifact; arrows show declared inputs.</p>
+    <pre class="mermaid">
+flowchart TD
+    B["01 Brief"]
+    MP["02 Market problems"]
+    CL["03 Competitive"]
+    P["04 Personas"]
+    WM["05 Workflows"]
+    TM["06 Touchpoints"]
+    PRD["07 PRD"]
+    AR["08 Arch recon"]
+    AD["09 Arch decisions"]
+    US["Epic 01 Use scenarios"]
+    EPRD["Epic 02 Epic PRD"]
+    ST["Epic 03 Stories"]
+    J["Epic 04 Jira export"]
+
+    B --> MP
+    MP --> CL
+    MP --> P
+    MP --> WM
+    P --> WM
+    B --> TM
+    WM --> TM
+    B --> PRD
+    MP --> PRD
+    CL --> PRD
+    P --> PRD
+    WM --> PRD
+    TM --> PRD
+    PRD --> AR
+    TM --> AR
+    AR --> AD
+    PRD --> US --> EPRD --> ST --> J
+    </pre>
+  </section>
+
+  <section id="cascade">
+    <h2>5. Example — usability finding cascades</h2>
+    <p>Superintendent test: glanceable list before map (contradicts persona assumption).</p>
+    <pre class="mermaid">
+flowchart TD
+    U["Finding in sources/"]
+    U --> P4["04 Personas"]
+    U --> W5["05 Workflows"]
+    P4 --> T6["06 Touchpoints"]
+    W5 --> T6
+    U --> B1["01 Brief principle — flagged for lead PM"]
+    T6 --> R7["07 PRD acceptance criteria"]
+    P4 --> R7
+    W5 --> R7
+    R7 --> ST["Epic stories"]
+    ARCH["08–09 Architecture"] -.->|"not needed"| SKIP["No change"]
+    </pre>
+  </section>
+
+  <section id="roles">
+    <h2>6. Who does what (review, not free edit)</h2>
+    <pre class="mermaid">
+sequenceDiagram
+    participant Design as Nicolas — evidence
+    participant PM as Connall — doc owner
+    participant Lead as Nathan — brief / principles
+    participant Dev as Natalia — consulted
+    Design->>PM: Usability note ingested
+    PM->>PM: Review queue on 04–07
+    PM->>Lead: Escalate if principle affected
+    Lead->>PM: Accept / scope / defer — logged
+    PM->>Dev: Feasibility question
+    Dev->>PM: Input only
+    PM->>PM: Version + review-log + optional PR merge
+    </pre>
+  </section>
+</body>
+</html>

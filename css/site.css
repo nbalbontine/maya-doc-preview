@@ -1,0 +1,69 @@
+:root {
+  font-family: system-ui, sans-serif;
+  line-height: 1.4;
+  color: #1a1a1a;
+}
+
+body {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+h1 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+}
+
+.lead {
+  color: #444;
+  margin: 0 0 1.5rem;
+  font-size: 0.95rem;
+}
+
+.lead a {
+  color: #0b57d0;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+nav a {
+  font-size: 0.85rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #111;
+}
+
+nav a:hover {
+  background: #f4f4f4;
+}
+
+section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+section h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+}
+
+section p {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.mermaid {
+  overflow-x: auto;
+}
