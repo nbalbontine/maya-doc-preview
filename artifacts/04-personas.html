@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Personas — Maya Agentic Platform — Maya PDLC</title>
+  <meta name="description" content="Who are we building for?" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="../css/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../pdlc-diagrams.html">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        Maya PDLC
+      </a>
+      <a class="badge badge-outline" href="index.html">Artifacts</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="container doc-page">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="../pdlc-diagrams.html">Overview</a>
+        <span aria-hidden="true">/</span>
+        <a href="index.html">Artifacts</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Personas</span>
+      </nav>
+
+      <aside class="doc-rail" aria-label="All artifacts">
+        <a href="01-brief.html" class="doc-rail-link">01 · Brief</a>
+        <a href="02-market-problems.html" class="doc-rail-link">02 · Market problems</a>
+        <a href="03-competitive-landscape.html" class="doc-rail-link">03 · Competitive landscape</a>
+        <a href="04-personas.html" class="doc-rail-link is-current">04 · Personas</a>
+        <a href="05-workflow-map.html" class="doc-rail-link">05 · Workflow map</a>
+        <a href="06-touchpoint-map.html" class="doc-rail-link">06 · Touchpoint map</a>
+        <a href="07-prd.html" class="doc-rail-link">07 · PRD</a>
+      </aside>
+
+      <article class="card doc-article">
+        <div class="card-header">
+          <div class="card-header-row">
+            <span class="badge badge-secondary">04</span>
+            <span class="badge badge-outline">draft</span>
+            <span class="badge badge-outline">v0.1.0 · 2026-09-28</span>
+          </div>
+          <h1 class="card-title card-title-lg">Personas — Maya Agentic Platform</h1>
+          <p class="card-description">Who are we building for? · Owner: product definer</p>
+        </div>
+        <div class="card-content prose">
+<p>Every persona here is <code>asserted</code>: built from how Trimble staff described customers in the workshop and the v1 PRD, not from interviews. Quotes are <strong>illustrative</strong> unless a source code is given. The personas decide what we build first and how usage is attributed; they do not change how the short-term agent behaves, which is user-agnostic (<code>WS-D2</code> D-12).</p>
+<h2 id="1-summary">1. Summary</h2>
+<div class="table-wrap"><table class="table table--wide">
+<thead>
+<tr>
+<th style="text-align: left;">ID</th>
+<th style="text-align: left;">Name / role</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Segment</th>
+<th style="text-align: left;">Key problems</th>
+<th style="text-align: left;">Evidence status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">UP-PM</td>
+<td style="text-align: left;">Priya — project manager</td>
+<td style="text-align: left;">User</td>
+<td style="text-align: left;">GC and subcontractor project teams</td>
+<td style="text-align: left;">MP-01, MP-02, MP-03, MP-09, MP-10, MP-13</td>
+<td style="text-align: left;">asserted</td>
+</tr>
+<tr>
+<td style="text-align: left;">UP-VDC</td>
+<td style="text-align: left;">Dev — VDC / digital engineer</td>
+<td style="text-align: left;">User</td>
+<td style="text-align: left;">GC digital delivery teams</td>
+<td style="text-align: left;">MP-05, MP-12</td>
+<td style="text-align: left;">asserted</td>
+</tr>
+<tr>
+<td style="text-align: left;">UP-QS</td>
+<td style="text-align: left;">Quinn — quantity surveyor</td>
+<td style="text-align: left;">User</td>
+<td style="text-align: left;">Subcontractors and GCs</td>
+<td style="text-align: left;">MP-04</td>
+<td style="text-align: left;">asserted</td>
+</tr>
+<tr>
+<td style="text-align: left;">UP-SUPER</td>
+<td style="text-align: left;">Sam — superintendent</td>
+<td style="text-align: left;">User</td>
+<td style="text-align: left;">GC site management</td>
+<td style="text-align: left;">MP-07, MP-08</td>
+<td style="text-align: left;">asserted</td>
+</tr>
+<tr>
+<td style="text-align: left;">UP-FIELD</td>
+<td style="text-align: left;">Femi — field engineer (capture operator)</td>
+<td style="text-align: left;">User</td>
+<td style="text-align: left;">GC and subcontractor site teams</td>
+<td style="text-align: left;">MP-06</td>
+<td style="text-align: left;">asserted</td>
+</tr>
+<tr>
+<td style="text-align: left;">UP-SUPPORT</td>
+<td style="text-align: left;">Sasha — Trimble support engineer</td>
+<td style="text-align: left;">User (internal)</td>
+<td style="text-align: left;">Trimble</td>
+<td style="text-align: left;">MP-11</td>
+<td style="text-align: left;">asserted</td>
+</tr>
+<tr>
+<td style="text-align: left;">BP-GC</td>
+<td style="text-align: left;">General contractor operations director</td>
+<td style="text-align: left;">Buyer — Economic</td>
+<td style="text-align: left;">GC</td>
+<td style="text-align: left;">MP-01, MP-03</td>
+<td style="text-align: left;">asserted</td>
+</tr>
+<tr>
+<td style="text-align: left;">BP-SUB</td>
+<td style="text-align: left;">Specialty subcontractor owner / commercial director</td>
+<td style="text-align: left;">Buyer — Economic</td>
+<td style="text-align: left;">MEP, steel and other trades</td>
+<td style="text-align: left;">MP-04, MP-10</td>
+<td style="text-align: left;">asserted</td>
+</tr>
+<tr>
+<td style="text-align: left;">BP-ARCH</td>
+<td style="text-align: left;">Customer digital-construction / IT lead</td>
+<td style="text-align: left;">Buyer — Technical</td>
+<td style="text-align: left;">GC, larger subcontractors</td>
+<td style="text-align: left;">MP-13</td>
+<td style="text-align: left;">asserted</td>
+</tr>
+</tbody>
+</table></div>
+<p>No <strong>Functional buyer</strong> is defined yet. The likely candidate is a project director who champions the tool after seeing it; recorded as VB-21.</p>
+<h2 id="2-interview-matrix">2. Interview Matrix</h2>
+<p>Who we have actually spoken to about MAP. Empty cells are the interview plan in <code>reviews/validation-backlog.md</code>.</p>
+<div class="table-wrap"><table class="table table--wide">
+<thead>
+<tr>
+<th style="text-align: left;">Segment</th>
+<th style="text-align: left;">Economic buyer</th>
+<th style="text-align: left;">Technical buyer</th>
+<th style="text-align: left;">Functional buyer</th>
+<th style="text-align: left;">User: PM</th>
+<th style="text-align: left;">User: VDC / QS</th>
+<th style="text-align: left;">User: Super / field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Customers</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Competitors' customers</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Evaluators</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Potentials</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="3-user-personas">3. User personas</h2>
+<h3 id="up-pm--priya-project-manager">UP-PM — Priya, project manager</h3>
+<p><strong>Segment:</strong> GC project team, or subcontractor PM across many projects · <strong>Relevant information:</strong> already has access to ProjectSight, Connect and Maya captures; the early-adopter profile the workshop named (<code>WS-D2</code>).</p>
+<blockquote>
+<p>"I know the answer is somewhere — an email, a spec, a photo. Finding it is my afternoon." <em>(illustrative, from <code>WS-D1</code>)</em></p>
+</blockquote>
+<p><strong>Problems</strong></p>
+<ul>
+<li>"I can't see what changed on site between two dates without opening both captures and scanning every station." (MP-02)</li>
+<li>"I can't tell which open RFIs, punch items and BCF topics could be closed without sending someone to check each one." (MP-01)</li>
+<li>"I don't know how complete an area is against schedule and design until a daily report arrives." (MP-03)</li>
+<li>"Answering one question means logging into five Trimble products." (MP-09)</li>
+<li>"I can only look at captures one project at a time." (MP-10)</li>
+<li>"I can't trust an AI answer I can't check." (MP-13)</li>
+</ul>
+<p><strong>Background story</strong> Priya runs a mid-size commercial fit-out. Her week is built around the coordination meeting where the owner, designers and trades ask what has changed and what is outstanding. The captures are there, but she answers from the daily reports and what the superintendent tells her, because opening two captures side by side for every area takes too long. At a subcontractor, the same role spans many projects at once (<code>WS-D2</code>).</p>
+<p><strong>Goals</strong></p>
+<ul>
+<li><strong>Be:</strong> the person in the meeting who has the answer and the proof.</li>
+<li><strong>Do:</strong> close outstanding items, keep the schedule, catch problems before they cost money.</li>
+<li><strong>Feel:</strong> in control of the project without being on site every day.</li>
+</ul>
+<p><strong>Behaviors</strong> Works from the office and site cabin; lives in ProjectSight and email; skims reports; trusts photos over prose.</p>
+<p><strong>Workflows owned:</strong> WF-01, WF-02, WF-04, WF-09</p>
+<p><strong>Evidence:</strong> <code>WS-D1</code>, <code>WS-D2</code>, <code>V1-PRD</code> · <strong>Status:</strong> asserted · <strong>Validation:</strong> VB-15</p>
+<h3 id="up-vdc--dev-vdc--digital-engineer">UP-VDC — Dev, VDC / digital engineer</h3>
+<p><strong>Segment:</strong> GC digital delivery team · <strong>Relevant information:</strong> manages federated models and BIM metadata; compares design with reality (<code>WS-D2</code>).</p>
+<blockquote>
+<p>"By the time I see the deviation, it's already a change order." <em>(illustrative)</em></p>
+</blockquote>
+<p><strong>Problems</strong></p>
+<ul>
+<li>"I find out that what was built differs from the model only after it has become a change order." (MP-05)</li>
+<li>"I type zones and locations into Excel by hand before I can report status by zone." (MP-12)</li>
+</ul>
+<p><strong>Background story</strong> Dev keeps the models current and colours model elements by progress for the PM. Comparing a capture to the model is manual; zones are drawn by hand.</p>
+<p><strong>Goals</strong></p>
+<ul>
+<li><strong>Be:</strong> the team's source of truth for as-built versus design.</li>
+<li><strong>Do:</strong> catch deviations while they are cheap to fix.</li>
+<li><strong>Feel:</strong> confident the model reflects the site.</li>
+</ul>
+<p><strong>Behaviors</strong> Desktop-heavy; Connect and model viewers; comfortable with filters and property sets (<code>V1-PRD</code>).</p>
+<p><strong>Workflows owned:</strong> WF-08 (and supports WF-02, WF-04)</p>
+<p><strong>Evidence:</strong> <code>WS-D2</code>, <code>WS-SH</code>, <code>V1-PRD</code> · <strong>Status:</strong> asserted · <strong>Validation:</strong> VB-16</p>
+<h3 id="up-qs--quinn-quantity-surveyor">UP-QS — Quinn, quantity surveyor</h3>
+<p><strong>Segment:</strong> subcontractor or GC commercial team · <strong>Relevant information:</strong> volumes, quantities, percent complete for payment (<code>WS-D2</code>).</p>
+<blockquote>
+<p>"A steel detailer gets paid for how much weight of steel has been erected." <em>(paraphrase, <code>WS-D2</code>)</em></p>
+</blockquote>
+<p><strong>Problems</strong></p>
+<ul>
+<li>"I float labour and materials until I can prove what was installed, and assembling that proof delays payment." (MP-04)</li>
+</ul>
+<p><strong>Background story</strong> Quinn prepares the monthly payment application against the schedule of values. The evidence is photos and site notes pulled together by hand.</p>
+<p><strong>Goals</strong></p>
+<ul>
+<li><strong>Be:</strong> the person whose application gets approved first time.</li>
+<li><strong>Do:</strong> prove installed quantities with evidence the GC accepts.</li>
+<li><strong>Feel:</strong> not exposed when a figure is challenged.</li>
+</ul>
+<p><strong>Behaviors</strong> Spreadsheet-first; monthly rhythm; needs exportable evidence.</p>
+<p><strong>Workflows owned:</strong> WF-05</p>
+<p><strong>Evidence:</strong> <code>WS-D1</code>, <code>WS-D2</code>, <code>V1-PRD</code> · <strong>Status:</strong> asserted · <strong>Validation:</strong> VB-17</p>
+<h3 id="up-super--sam-superintendent">UP-SUPER — Sam, superintendent</h3>
+<p><strong>Segment:</strong> GC site management · <strong>Relevant information:</strong> four-week lookahead, crew allocation, rework prevention (<code>WS-D2</code>).</p>
+<blockquote>
+<p>"What's the status of zone A, what's the status of zone B? I need to send the crew to floor two zone five." <em>(paraphrase, <code>WS-D2</code>)</em></p>
+</blockquote>
+<p><strong>Problems</strong></p>
+<ul>
+<li>"Checking that snags and punch items were actually fixed means walking the same route again." (MP-07)</li>
+<li>"Nobody systematically reviews site imagery for safety issues." (MP-08)</li>
+</ul>
+<p><strong>Background story</strong> Sam is on site all day. He wants short answers by zone, on his phone, and has no time for a chat window.</p>
+<p><strong>Goals</strong></p>
+<ul>
+<li><strong>Be:</strong> ahead of the next problem.</li>
+<li><strong>Do:</strong> get crews to the right zone; close snags once.</li>
+<li><strong>Feel:</strong> that the office sees what he sees.</li>
+</ul>
+<p><strong>Behaviors</strong> Mobile; walks the site; reads maps, not paragraphs.</p>
+<p><strong>Workflows owned:</strong> WF-06, WF-07</p>
+<p><strong>Evidence:</strong> <code>WS-D2</code> · <strong>Status:</strong> asserted · <strong>Validation:</strong> VB-18</p>
+<h3 id="up-field--femi-field-engineer-capture-operator">UP-FIELD — Femi, field engineer (capture operator)</h3>
+<p><strong>Segment:</strong> site team · <strong>Relevant information:</strong> walks with the 360 camera in ProjectSight Mobile (<code>V1-PRD</code>).</p>
+<blockquote>
+<p>"I only find out I missed the east stair when someone asks for it." <em>(illustrative)</em></p>
+</blockquote>
+<p><strong>Problems</strong></p>
+<ul>
+<li>"I miss areas on my site walk and only find out when someone asks for a view that isn't there." (MP-06)</li>
+</ul>
+<p><strong>Background story</strong> Femi captures weekly. Nobody tells him what was missed until it is too late to re-walk.</p>
+<p><strong>Goals</strong></p>
+<ul>
+<li><strong>Be:</strong> reliable.</li>
+<li><strong>Do:</strong> capture everything needed in one walk.</li>
+<li><strong>Feel:</strong> that the walk was worth it.</li>
+</ul>
+<p><strong>Behaviors</strong> Mobile; follows a habitual route.</p>
+<p><strong>Workflows owned:</strong> WF-03</p>
+<p><strong>Evidence:</strong> <code>WS-D1</code>, <code>WS-D3</code>, <code>WS-SH</code> · <strong>Status:</strong> asserted · <strong>Validation:</strong> VB-19</p>
+<h3 id="up-support--sasha-trimble-support-engineer-internal">UP-SUPPORT — Sasha, Trimble support engineer (internal)</h3>
+<p><strong>Segment:</strong> Trimble customer support · <strong>Relevant information:</strong> uses SKIT for access and processing status (<code>WS-D3</code>).</p>
+<blockquote>
+<p>"Every failed capture is an email thread with the customer and engineering." <em>(illustrative, from <code>WS-SH</code>)</em></p>
+</blockquote>
+<p><strong>Problems</strong></p>
+<ul>
+<li>"Diagnosing a failed capture takes an email chain between the customer, support and engineering." (MP-11)</li>
+</ul>
+<p><strong>Goals</strong></p>
+<ul>
+<li><strong>Be:</strong> able to resolve the ticket myself.</li>
+<li><strong>Do:</strong> find why a capture failed from one place.</li>
+<li><strong>Feel:</strong> not dependent on engineering for routine cases.</li>
+</ul>
+<p><strong>Workflows owned:</strong> WF-10</p>
+<p><strong>Evidence:</strong> <code>WS-D3</code>, <code>WS-SH</code> · <strong>Status:</strong> asserted (internal persona; validate with support ticket data) · <strong>Validation:</strong> VB-11</p>
+<h2 id="4-buyer-personas">4. Buyer personas</h2>
+<h3 id="bp-gc--general-contractor-operations-director--economic">BP-GC — General contractor operations director · Economic</h3>
+<p><strong>Segment:</strong> GC, UK and North America</p>
+<blockquote>
+<p>"Our margins are about one percent. Predictability is the product." <em>(illustrative, from <code>WS-D2</code>)</em></p>
+</blockquote>
+<p><strong>Problems and goals (business outcome they are buying)</strong> Fewer delays and overruns; faster closeout; less site time spent answering office questions (MP-01, MP-03). Cash-flow positive during projects but with thin margins (<code>WS-D2</code>).</p>
+<p><strong>Buying process and barriers</strong></p>
+<ul>
+<li><strong>How they buy:</strong> &gt; TODO: unknown. Likely existing Trimble enterprise agreement plus an add-on.</li>
+<li><strong>Selection criteria:</strong> &gt; TODO: validate — assumed proof of time saved on real projects.</li>
+<li><strong>Barriers / objections:</strong> paying extra for an AI tier (N-01); AI accuracy.</li>
+</ul>
+<p><strong>What moves them</strong></p>
+<ul>
+<li><strong>Triggers:</strong> a late project; a failed handover.</li>
+<li><strong>Information sources:</strong> &gt; TODO: unknown.</li>
+</ul>
+<p><strong>Evidence:</strong> <code>WS-D2</code> · <strong>Status:</strong> asserted · <strong>Validation:</strong> VB-20</p>
+<h3 id="bp-sub--specialty-subcontractor-owner--commercial-director--economic">BP-SUB — Specialty subcontractor owner / commercial director · Economic</h3>
+<p><strong>Segment:</strong> MEP, steel and other trades</p>
+<blockquote>
+<p>"If we don't get paid on time, we're carrying the project." <em>(illustrative, from <code>WS-D2</code>)</em></p>
+</blockquote>
+<p><strong>Problems and goals</strong> Faster payment through accepted evidence (MP-04); visibility across many projects (MP-10).</p>
+<p><strong>Buying process and barriers</strong></p>
+<ul>
+<li><strong>How they buy:</strong> &gt; TODO: unknown; may be pulled in by the GC's ProjectSight.</li>
+<li><strong>Selection criteria:</strong> &gt; TODO: validate — assumed days-to-payment.</li>
+<li><strong>Barriers / objections:</strong> GC controls the project platform.</li>
+</ul>
+<p><strong>What moves them</strong></p>
+<ul>
+<li><strong>Triggers:</strong> a rejected payment application.</li>
+<li><strong>Information sources:</strong> &gt; TODO: unknown.</li>
+</ul>
+<p><strong>Evidence:</strong> <code>WS-D1</code>, <code>WS-D2</code> · <strong>Status:</strong> asserted · <strong>Validation:</strong> VB-20</p>
+<h3 id="bp-arch--customer-digital-construction--it-lead--technical">BP-ARCH — Customer digital-construction / IT lead · Technical</h3>
+<p><strong>Segment:</strong> GC and larger subcontractors</p>
+<blockquote>
+<p>"Show me the agent can't see anything our people can't." <em>(illustrative)</em></p>
+</blockquote>
+<p><strong>Problems and goals</strong> Adopt AI without leaking project data or granting access the user does not have; keep data in the source systems (MP-13).</p>
+<p><strong>Buying process and barriers</strong></p>
+<ul>
+<li><strong>How they buy:</strong> gatekeeps; can veto on security, data residency and privacy (GDPR and SOC 2 in <code>V1-PRD</code>).</li>
+<li><strong>Selection criteria:</strong> authorization parity, auditability, data stays in region, no model training on customer data. &gt; TODO: validate.</li>
+<li><strong>Barriers / objections:</strong> AI governance policies; unknown model providers.</li>
+</ul>
+<p><strong>What moves them</strong></p>
+<ul>
+<li><strong>Triggers:</strong> an executive mandate to adopt AI.</li>
+<li><strong>Information sources:</strong> &gt; TODO: unknown.</li>
+</ul>
+<p><strong>Evidence:</strong> <code>V1-PRD</code>, <code>WS-D1</code>, <code>WS-PW</code> · <strong>Status:</strong> asserted · <strong>Validation:</strong> VB-22</p>
+
+        </div>
+      </article>
+
+      <nav class="doc-pager" aria-label="Artifact navigation">
+        <a class="doc-pager-link" href="03-competitive-landscape.html">&larr; Competitive landscape</a>
+        <a class="doc-pager-link doc-pager-link--next" href="05-workflow-map.html">Workflow map &rarr;</a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      Maya Agentic Platform · Generated from <code>initiatives/maya-agentic-platform/artifacts/04-personas.md</code> — do not edit this page directly.
+    </div>
+  </footer>
+</body>
+</html>

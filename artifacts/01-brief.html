@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brief — Maya Agentic Platform (MAP) — Maya PDLC</title>
+  <meta name="description" content="Why does this initiative exist? Intent, principles, non-goals." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="../css/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../pdlc-diagrams.html">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        Maya PDLC
+      </a>
+      <a class="badge badge-outline" href="index.html">Artifacts</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="container doc-page">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="../pdlc-diagrams.html">Overview</a>
+        <span aria-hidden="true">/</span>
+        <a href="index.html">Artifacts</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Brief</span>
+      </nav>
+
+      <aside class="doc-rail" aria-label="All artifacts">
+        <a href="01-brief.html" class="doc-rail-link is-current">01 · Brief</a>
+        <a href="02-market-problems.html" class="doc-rail-link">02 · Market problems</a>
+        <a href="03-competitive-landscape.html" class="doc-rail-link">03 · Competitive landscape</a>
+        <a href="04-personas.html" class="doc-rail-link">04 · Personas</a>
+        <a href="05-workflow-map.html" class="doc-rail-link">05 · Workflow map</a>
+        <a href="06-touchpoint-map.html" class="doc-rail-link">06 · Touchpoint map</a>
+        <a href="07-prd.html" class="doc-rail-link">07 · PRD</a>
+      </aside>
+
+      <article class="card doc-article">
+        <div class="card-header">
+          <div class="card-header-row">
+            <span class="badge badge-secondary">01</span>
+            <span class="badge badge-outline">draft</span>
+            <span class="badge badge-outline">v0.1.0 · 2026-09-28</span>
+          </div>
+          <h1 class="card-title card-title-lg">Brief — Maya Agentic Platform (MAP)</h1>
+          <p class="card-description">Why does this initiative exist? Intent, principles, non-goals. · Owner: product definer</p>
+        </div>
+        <div class="card-content prose">
+<blockquote>
+<p>Maya v1 put 360 site capture inside ProjectSight, and customers use it: about 1,000 captures and 6 million square feet (<code>TEL</code>). But the captures mostly get <em>looked at</em>. Project managers, VDC teams, quantity surveyors and superintendents still answer "what changed?", "can I close this?" and "are we on track?" by walking the site, opening five products and reading late daily reports. MAP turns Maya into a virtual employee that answers those questions from the reality data Trimble already holds, shows the evidence on the drawing, and leaves the decision with the person. Now, because LLMs have reset what customers expect, and because Trimble holds a full timeline of project history that point-in-time capture competitors do not. (<code>WS-D1</code>, <code>WS-SH</code>)</p>
+</blockquote>
+<h2 id="1-intent">1. Intent</h2>
+<p>When MAP succeeds:</p>
+<ul>
+<li>A project manager can ask what changed on site between two dates and get the answer on the floor plan, with photos, in the product they already have open.</li>
+<li>A project manager can see which open RFIs, punch items and BCF topics the latest captures show as resolved, and close them after checking the evidence.</li>
+<li>A superintendent or QS can show progress or installed work against the plan without assembling screenshots by hand.</li>
+<li>When Maya cannot answer, it says why and what capture, date range or permission would let it answer — and people trust it more for that.</li>
+<li>Every answer is traceable to the source records and captures it came from, and every answer can be rated.</li>
+</ul>
+<h2 id="2-framing">2. Framing</h2>
+<h3 id="2a-the-problem-as-we-currently-understand-it">2a. The problem as we currently understand it</h3>
+<p>Hypotheses, heard inside Trimble. Scored in <code>02-market-problems.md</code>.</p>
+<ol type="1">
+<li>"I can't see what changed on site between two dates without opening both captures and scanning every station." (<code>WS-D2</code>, <code>WS-D3</code>, <code>WS-SH</code>; contractors reacted strongly to the prototype, <code>CUST-2HAND</code>)</li>
+<li>"I can't tell which open RFIs, punch items and BCF topics could be closed without sending someone to check each one." (<code>WS-D1</code>, <code>WS-D2</code>, <code>WS-PW</code>)</li>
+<li>"I don't know how complete an area is against schedule and design until a daily report arrives, and those are late and inaccurate." (<code>WS-D1</code>, <code>WS-D2</code>)</li>
+<li>"I float labour and materials until I can prove what I installed, and assembling that proof delays my payment." (<code>WS-D1</code>, <code>WS-D2</code>, <code>V1-PRD</code>)</li>
+<li>"Answering one question means logging into five Trimble products and sifting through email." (<code>WS-D1</code>, <code>WS-SH</code>)</li>
+<li>"I can't trust an AI answer I can't check." (<code>WS-D2</code>, <code>WS-D3</code>, <code>WS-SH</code>)</li>
+</ol>
+<h3 id="2b-who-has-it">2b. Who has it</h3>
+<p>Early users are people with <strong>broad access to existing project data</strong> who lose time sifting across disconnected systems — not field staff without data access (<code>WS-D2</code>).</p>
+<ul>
+<li><strong>Users:</strong> project manager, VDC / digital engineer, quantity surveyor, superintendent, field engineer (capture operator), Trimble support.</li>
+<li><strong>Buyers:</strong> general contractor (Economic), specialty subcontractor (Economic), customer digital-construction / IT lead (Technical).</li>
+</ul>
+<p>Detailed in <code>04-personas.md</code>.</p>
+<h3 id="2c-what-we-are-not-doing">2c. What we are not doing</h3>
+<ul>
+<li><strong>Not a chatbot.</strong> MAP is judged by answers with evidence, not by conversation. (<code>WS-SH</code>)</li>
+<li><strong>Not making decisions.</strong> Maya does not approve, close, reschedule or change records in source systems without explicit human confirmation. Schedule recommendations belong to APE. (<code>WS-D1</code>, <code>WS-D2</code>)</li>
+<li><strong>Not rebuilding the platform.</strong> No new identity, permissions or project records inside Maya; no copies of ProjectSight or Connect data. (<code>WS-D1</code>)</li>
+<li><strong>Not role-specific behaviour yet.</strong> The short-term agent is user-agnostic; personas shape what we build, not how the agent branches. (<code>WS-D2</code>)</li>
+<li><strong>Not advanced vision first.</strong> Prototype with data already in the viewer before investing in new segmentation or detection models. (<code>WS-PW</code>)</li>
+<li><strong>Not the prototype itself.</strong> Prototypes and code live in the separate monorepo; this dossier defines what and why.</li>
+</ul>
+<h3 id="2d-principles-that-constrain-every-downstream-artifact">2d. Principles that constrain every downstream artifact</h3>
+<ol type="1">
+<li><strong>Evidence, not decisions.</strong> Every output is an evidence package: what reality shows versus design intent, with photos, dates, coordinates and rationale. A human or the owning system decides.</li>
+<li><strong>Decline with a path to yes.</strong> An answer Maya cannot support is declined, with the capture, date range or permission that would make it answerable.</li>
+<li><strong>Coverage before cost.</strong> Maya confirms data exists for the asked scope before running an expensive query.</li>
+<li><strong>Source systems win.</strong> ProjectSight and Connect are the source of truth; Maya reads through their APIs and links back to the record.</li>
+<li><strong>Deterministic facts, reasoning model.</strong> Counts, positions, dates and scores come from deterministic tools; the model explains them.</li>
+<li><strong>Visual first.</strong> Anything spatial is shown on the drawing or in the 360 viewer; text accompanies it.</li>
+<li><strong>Same answer from every front door.</strong> Standalone, embedded, agent-to-agent and headless entry give the same outcome for the same question.</li>
+<li><strong>The agent sees only what the user may see.</strong> Authorization is enforced below the agent, not by prompt.</li>
+<li><strong>Every output can be rated.</strong> The feedback control is on every answer.</li>
+<li><strong>Model-agnostic harness.</strong> Changing or retiring a model must not force rework of tools, skills or evals.</li>
+</ol>
+<h2 id="3-weight">3. Weight</h2>
+<div class="table-wrap"><table class="table table--wide">
+<thead>
+<tr>
+<th style="text-align: left;">Dimension</th>
+<th style="text-align: left;">Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Appetite</td>
+<td style="text-align: left;">Ship a Maya V2 agent to real users in the short term to capture feedback and usage (<code>WS-D1</code> D-09). Re-decide scope after the first workflow slice has usage data. &gt; TODO: calendar date and team size — owner Nathan Patton</td>
+</tr>
+<tr>
+<td style="text-align: left;">Business model</td>
+<td style="text-align: left;">Net-new <strong>AI subscription tier</strong>, not free inside existing Maya (<code>WS-D1</code>, N-01). Usage billing through Trimble credits lags go-to-market by about six months; e-commerce is the stopgap (<code>WS-D2</code>). Pricing mechanics are open.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Market window</td>
+<td style="text-align: left;">Customer expectations reset by LLMs; competitors (OpenSpace) already demonstrating agent-to-agent RFI and punch workflows (<code>WS-D1</code>, <code>WS-D2</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;">Confidence</td>
+<td style="text-align: left;"><strong>Low on market evidence.</strong> Every problem above was stated inside Trimble. The only market signals are adoption telemetry for v1 and customer reactions relayed secondhand. Scores in <code>02-market-problems.md</code> are provisional and the validation backlog is the first piece of work.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="4-propagation-principle">4. Propagation principle</h2>
+<div class="table-wrap"><table class="table table--wide">
+<thead>
+<tr>
+<th style="text-align: left;">If this brief changes …</th>
+<th style="text-align: left;">Then re-review …</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Intent or a principle</td>
+<td style="text-align: left;">every artifact</td>
+</tr>
+<tr>
+<td style="text-align: left;">Framing (problems, personas)</td>
+<td style="text-align: left;">market problems, personas, workflow map, PRD</td>
+</tr>
+<tr>
+<td style="text-align: left;">Non-goals</td>
+<td style="text-align: left;">PRD scope, epic PRDs</td>
+</tr>
+<tr>
+<td style="text-align: left;">Weight</td>
+<td style="text-align: left;">PRD overview, Group Order</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="5-open-questions">5. Open questions</h2>
+<ul>
+<li><blockquote>
+<p>TODO: Appetite in calendar terms and the date the first workflow slice must reach users — owner Nathan Patton.</p>
+</blockquote></li>
+<li><blockquote>
+<p>TODO: AI tier pricing and packaging; who owns the decision — owner product leadership (N-01).</p>
+</blockquote></li>
+<li><blockquote>
+<p>TODO: Which customer organisations join the first beta, and can we interview them before build — owner product definer.</p>
+</blockquote></li>
+<li><blockquote>
+<p>TODO: Confirm "PCF" in the notes means BCF topics — owner Nathan Patton.</p>
+</blockquote></li>
+</ul>
+
+        </div>
+      </article>
+
+      <nav class="doc-pager" aria-label="Artifact navigation">
+        <span></span>
+        <a class="doc-pager-link doc-pager-link--next" href="02-market-problems.html">Market problems &rarr;</a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      Maya Agentic Platform · Generated from <code>initiatives/maya-agentic-platform/artifacts/01-brief.md</code> — do not edit this page directly.
+    </div>
+  </footer>
+</body>
+</html>
